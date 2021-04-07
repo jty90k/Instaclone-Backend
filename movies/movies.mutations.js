@@ -1,8 +1,7 @@
-import client from "../client.js";
+import client from "../client";
 export default {
   Mutation: {
     createMovie: (_, { title, year, genre }) =>
-      //client .movie. create는 retrun 값이 Movie이다 그래서 type Mutation createMovie (~) : Boolean -> Movie로 변경해 준다.
       client.movie.create({
         data: {
           title,
