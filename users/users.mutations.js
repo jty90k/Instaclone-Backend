@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import client from "../client.js";
 
 export default {
@@ -41,6 +42,7 @@ export default {
     },
 
     // login
+
     login: async (_, { username, password }) => {
       // find user with args.username
       const user = await client.user.findFirst({ where: { username } });
@@ -50,6 +52,7 @@ export default {
           error: "User not found.",
         };
       }
+      // check password with args.password
       const passwordOk = await bcrypt.compare(password, user.password);
       if (!passwordOk) {
         return {
@@ -57,8 +60,12 @@ export default {
           error: "Incorrect password.",
         };
       }
-      // check password with args.password
       // issues a token and it to the user
+      const token = await jwt.sign({ id: user.id }, process.env.SECRET_KEY);
+      return {
+        ok: true,
+        token,
+      };
     },
   },
 };

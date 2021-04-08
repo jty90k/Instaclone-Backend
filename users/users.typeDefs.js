@@ -15,6 +15,7 @@ export default gql`
     token: String
     error: String
   }
+
   type Mutation {
     createAccount(
       firstName: String!
