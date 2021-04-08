@@ -5,7 +5,7 @@ Instaclone Backend
 ## User:
 
 - [✅] Create Account @ mutation
-- [] see Profile @ query
+- [✅] see Profile @ query
 - [] Login
 - [] Edit Profile
 - [] Follow User
