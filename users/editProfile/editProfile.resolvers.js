@@ -3,8 +3,6 @@ import bcrypt from "bcrypt";
 import client from "../../client.js";
 import { protectedResolver } from "../users.utils.js";
 
-console.log(process.cwd());
-
 const resolverFn = async (
   _,
   { firstName, lastName, username, email, password: newPassword, bio, avatar },
