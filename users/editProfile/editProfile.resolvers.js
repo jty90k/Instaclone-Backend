@@ -4,9 +4,10 @@ import { protectedResolver } from "../users.utils.js";
 
 const resolverFn = async (
   _,
-  { firstName, lastName, username, email, password: newPassword, bio },
+  { firstName, lastName, username, email, password: newPassword, bio, avatar },
   { loggedInUser }
 ) => {
+  console.log(avatar);
   // hass passord
   let uglyPassowrd = null;
   if (newPassword) {
