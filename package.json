@@ -6,7 +6,7 @@
     "dev": "nodemon --exec babel-node server",
     "migrate": "npx prisma migrate dev add-profile",
     "studio": "npx prisma studio",
-    "preinstall": "npx npm-force-resolution"
+    "preinstall": "npx npm-force-resolutions"
   },
   "repository": {
     "type": "git",
