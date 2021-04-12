@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon --exec babel-node server",
     "migrate": "npx prisma migrate dev add-profile",
-    "studio": "npx prisma studio"
+    "studio": "npx prisma studio",
+    "preinstall": "npx npm-force-resolution"
   },
   "repository": {
     "type": "git",
@@ -34,5 +35,9 @@
     "morgan": "1.10.0",
     "node": "15.12.0",
     "prisma": "2.20.1"
+  },
+  "resolutions": {
+    "fs-capacitor": "6.2.0",
+    "graphql-upload": "11.0.0"
   }
 }

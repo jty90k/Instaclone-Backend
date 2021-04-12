@@ -12,8 +12,8 @@ const resolverFn = async (
 ) => {
   let avatarUrl = null;
   if (avatar) {
-    const { filename, createReadStream } = await avatar;
     const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
+    const { createReadStream, filename } = await avatar;
     const readStream = createReadStream();
     const writeStream = createWriteStream(
       process.cwd() + "/uploads/" + newFilename
