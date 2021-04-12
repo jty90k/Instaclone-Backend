@@ -7,6 +7,9 @@ export default {
         where: {
           username,
         },
+        include: {
+          following: true,
+        },
       }),
   },
 };

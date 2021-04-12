@@ -9,13 +9,11 @@ Instaclone Backend
 - [✅] Login
 - [✅] Edit Profile
 - [✅] Change Avatar (Image Upload)
-- [] Follow User
-- [] Follow User
-- [] Unfollow User
-- [] Unfollow User
+- [✅] Follow User
+- [✅] Unfollow User
+- [] See Followers and See Follwing w/ Pagination
+- [] Computed Fields
 - [] Search Users
-- [] See Followers
-- [] See Follwing
 
 ## Photos
 
