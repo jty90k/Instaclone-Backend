@@ -7,9 +7,9 @@ Instaclone Backend
 - [✅] Create Account @ mutation
 - [✅] see Profile @ query
 - [✅] Login
-- [❗️] Edit Profile
-- [❗️] Follow User
-- [] Change Avatar (Image Upload)
+- [✅] Edit Profile
+- [✅] Change Avatar (Image Upload)
+- [] Follow User
 - [] Follow User
 - [] Unfollow User
 - [] Unfollow User
