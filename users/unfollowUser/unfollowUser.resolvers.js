@@ -1,6 +1,7 @@
 import client from "../../client.js";
 import { protectedResolver } from "../users.utils.js";
 
+// isMe request할 때 누가 seeProfile을 요청하는 지를 알고 있어야한다.
 export default {
   Mutation: {
     unfollowUser: protectedResolver(
