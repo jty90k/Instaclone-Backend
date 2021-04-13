@@ -47,7 +47,7 @@ model Photo {
 
 model Hashtag {
   id        Int      @id @default(autoincrement())
-  hashtag   String // hashtag 하나 당 여러개 사진을 갖도록 하면 더 좋을 것
+  hashtag   String   @unique // hashtag 하나 당 여러개 사진을 갖도록 하면 더 좋을 것
   photo     Photo[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
