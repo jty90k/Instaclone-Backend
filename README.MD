@@ -18,14 +18,14 @@ Instaclone Backend
 
 ## Photos
 
+- [] Upload Photo (Parse #)
 - [] See Phto
-- [] Upload Photo
-- [] Edit Photo
+- [] See Hastags
+- [] Search Photos
 - [] Like / Unlike Photo
+- [] Edit Photo
 - [] See Photo Likes
 - [] See Feed
-- [] Search Photos
-- [] See Hastags
 
 ## Comments
 

@@ -9,17 +9,45 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+// User 한 명의 유저가 여러개의 사진을 가질 수 있다는 뜻. {실제 인스타에 보면 프로필에 사진이 여러장 있다.}
 model User {
-    id          Int       @id @default(autoincrement())
-    firstName   String
-    lastName    String?
-    username    String    @unique
-    email       String    @unique
-    password    String
-    bio         String?
-    avatar      String?
-    followers   User[]    @relation("FollowRelation", references: [id])
-    following   User[]    @relation("FollowRelation", references: [id])
-    createdAt   DateTime  @default(now())
-    updatedAt   DateTime  @updatedAt
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String?
+  username  String   @unique
+  email     String   @unique
+  password  String
+  bio       String?
+  avatar    String?
+  photo     Photo[] // Photo는 실제 DB에 저장이 되진 않는다. / 단지 Prisma와 Prisma Client가 우리가 뭘하는지 알기 이해서 있다.
+  followers User[]   @relation("FollowRelation", references: [id])
+  following User[]   @relation("FollowRelation", references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Photo {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id]) //User 실제 DB에 저장이 되진 않는다.
+  userId    Int // DB에 실제 저장이 된다. 
+  file      String
+  caption   String? // 유저가 사진 캡션을 추가해도 되고 안 해도 되니까 선택 항목(option)
+  hashtags  Hashtag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  hashtagId Int?
+}
+
+// caption (Hashtag)설명
+// 인스타는 해당 Hastag를 인지하고 #food #awesome을 추출한다 그리고 해당 Hashtag를 검색하면 나의 사진도 뜬다.
+// 인스타 그램은 Hastag로 등록된 사진들이 총 몇 개인지도 알 수 있다. 이런 계산은 Hastag 모델 없이는 불가능하다.
+// Omg I love this #food is #awesome
+
+model Hashtag {
+  id        Int      @id @default(autoincrement())
+  hashtag   String // hashtag 하나 당 여러개 사진을 갖도록 하면 더 좋을 것
+  photo     Photo[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
