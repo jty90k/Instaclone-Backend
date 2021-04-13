@@ -9,6 +9,7 @@ export default {
         },
         include: {
           following: true,
+          followers: true,
         },
       }),
   },
