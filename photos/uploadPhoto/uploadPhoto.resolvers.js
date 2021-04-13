@@ -6,35 +6,38 @@ export default {
   Mutation: {
     uploadPhoto: protectedResolver(
       async (_, { file, caption }, { loggedInUser }) => {
+        // 내부 hashtagObj 를 밖에 있는 걸로 빼주기 위해서는 hashtagObj를 [] 만든다.
+        let hashtagObj = [];
         // 사진을 파일시스템에 업로드하는 작업을 또 거칠 필요는 없을거 같아
         // 캡션속에 있는 Hashtag들을 추출해야 해
         // 근데 caption은 존재할수도 있고 존재하지 않을수도 있잖아 그래서 caption 존재 여부에 따라 추가해줘야 해
         // caption이 존재할때만 실행하고, caption이 없으면 아무것도 하지 않을거야
         if (caption) {
           const hashtags = caption.match(/#[\w]+/g);
+          hashtagObj = hashtags.map((hashtag) => ({
+            where: { hashtag },
+            create: { hashtag },
+          }));
+          console.log(hashtagObj);
           /// parse cation
           // get or create Hashtags
         }
         // save the photo WITH the parsed hashtags
         // add the photo to the hashtags
-        client.photo.create({
+        return client.photo.create({
           data: {
             file,
             caption,
-            hashtags: {
-              // 여기에서 추출한 Hastag 하나당 connectOrCreate를 적용시킬거야
-              connectOrCreate: [
-                {
-                  where: {
-                    hashtag: "#food",
-                  },
-                  // Hastag 존재하지 않으면 새로 만든다.
-                  create: {
-                    hashtag: "#food",
-                  },
-                },
-              ],
+            user: {
+              connect: {
+                id: loggedInUser.id,
+              },
             },
+            ...(hashtagObj.length > 0 && {
+              hashtags: {
+                connectOrCreate: hashtagObj,
+              },
+            }),
           },
         });
       }
