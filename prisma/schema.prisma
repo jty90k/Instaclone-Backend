@@ -1,6 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// Prisma는 우리가 예외를 두지 않는 한 모든 항목은 기본적으로 필수 항목이다.
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")

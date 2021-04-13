@@ -10,6 +10,7 @@ const resolverFn = async (
   { firstName, lastName, username, email, password: newPassword, bio, avatar },
   { loggedInUser }
 ) => {
+  // 사진파일 업로드 하는 로직
   let avatarUrl = null;
   if (avatar) {
     const { filename, createReadStream } = await avatar;
