@@ -13,20 +13,21 @@ generator client {
 
 // User 한 명의 유저가 여러개의 사진을 가질 수 있다는 뜻. {실제 인스타에 보면 프로필에 사진이 여러장 있다.}
 model User {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   firstName String
   lastName  String?
-  username  String   @unique
-  email     String   @unique
+  username  String    @unique
+  email     String    @unique
   password  String
   bio       String?
   avatar    String?
   photos    Photo[] // Photo는 실제 DB에 저장이 되진 않는다. / 단지 Prisma와 Prisma Client가 우리가 뭘하는지 알기 이해서 있다.
   likes     Like[]
-  followers User[]   @relation("FollowRelation", references: [id])
-  following User[]   @relation("FollowRelation", references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  followers User[]    @relation("FollowRelation", references: [id])
+  following User[]    @relation("FollowRelation", references: [id])
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Photo {
@@ -40,6 +41,7 @@ model Photo {
   updatedAt DateTime  @updatedAt
   hashtagId Int?
   likes     Like[]
+  comments  Comment[]
 }
 
 // caption (Hashtag)설명
@@ -65,4 +67,15 @@ model Like {
   updatedAt DateTime @updatedAt
 
   @@unique([photoId, userId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  photo     Photo    @relation(fields: [photoId], references: [id])
+  payload   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  photoId   Int
 }

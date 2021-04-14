@@ -11,6 +11,8 @@ export default gql`
     hashtags: [Hashtag]
     createdAt: String!
     updatedAt: String!
+    # isMine: Comment 작성자 / 내가 Comment를 작성했다면 Comment를 삭제할 수 있는 x 버튼 보여주기
+    isMine: Boolean!
   }
   # Hastag 탑입이 명시 되어 있지 않다. 해결방법 2가지 1) 해당 파일내에 type Hastag 만든다.
 
