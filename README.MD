@@ -19,10 +19,10 @@ Instaclone Backend
 ## Photos
 
 - [✅] Upload Photo (Parse #)
-- [✅] See Phto
+- [✅] See Photo
 <!-- #food / 2,050,459 posts / photos 이런 기능 -->
-- [] See Hastags
-- [] Search Photos
+- [✅] See Hastag
+- [✅] Search Photos
 - [] Edit Photo
 - [] Like / Unlike Photo
 - [] See Photo Likes
