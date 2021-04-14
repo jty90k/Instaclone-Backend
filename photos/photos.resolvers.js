@@ -16,6 +16,12 @@ export default {
     // Like 개수를 나타내는 필드 // 사진에 달린 comment(코멘트)
     likes: ({ id }) => client.like.count({ where: { photoId: id } }),
     comments: ({ id }) => client.comment.count({ where: { photoId: id } }),
+    isMine: ({ userId }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false;
+      }
+      return userId === loggedInUser.id;
+    },
   },
   Hashtag: {
     photos: ({ id }, { page }, { loggedInUser }) => {
