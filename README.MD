@@ -36,7 +36,7 @@ Instaclone Backend
 
 - [✅] Comment on Photo
 - [✅] Delete Comment (Is Mine)
-- [] Edit Comment
+- [✅] Edit Comment
 <!-- isMine: Comment 작성자 / 내가 Comment를 작성했다면 Comment를 삭제할 수 있는 x 버튼 보여주기 -->
 - [] Delete Comment (Is Mine)
 
