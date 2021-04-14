@@ -3,11 +3,11 @@ import { gql } from "apollo-server-core";
 //Graphql은 우리가 필수 ! 로 지정하지 않는 한, 모든 항목은 성택항목이다.
 export default gql`
   type Photo {
-    id: String!
+    id: Int!
     user: User
     file: String!
     caption: String!
-    hashtag: [Hashtag]
+    hashtags: [Hashtag]
     createdAt: String!
     updatedAt: String!
   }
