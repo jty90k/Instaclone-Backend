@@ -24,9 +24,10 @@ export default gql`
   # 나는(Nico) 보통 시작할 때 한 모슐 속에 모든걸 포함시킨 다음에, 에를 들어 Hastag가 Photo말고 Comment나 다른 모델에도 쓰인다는걸 알게 되면 그 떄 Hashtag를 독립적인 모듈로 분리시키는 편이야
   # 난(Nico) 일단 제일 쉬운 방법으로 진쟁해보고 필요할 때마다 코드를 수정하고 좀 더 다듬고 그런 식으로 반복하는걸 선호해
   type Hashtag {
-    id: String!
+    id: Int!
     hashtag: String!
-    photos: [Photo]
+    photos(page: Int!): [Photo]
+    totalPhotos: Int!
     createdAt: String!
     updatedAt: String!
   }
