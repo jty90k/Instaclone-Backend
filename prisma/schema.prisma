@@ -22,6 +22,7 @@ model User {
   bio       String?
   avatar    String?
   photos    Photo[] // Photo는 실제 DB에 저장이 되진 않는다. / 단지 Prisma와 Prisma Client가 우리가 뭘하는지 알기 이해서 있다.
+  likes     Like[]
   followers User[]   @relation("FollowRelation", references: [id])
   following User[]   @relation("FollowRelation", references: [id])
   createdAt DateTime @default(now())
@@ -38,6 +39,7 @@ model Photo {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   hashtagId Int?
+  Likes     Like[]
 }
 
 // caption (Hashtag)설명
@@ -51,4 +53,16 @@ model Hashtag {
   photos    Photo[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  photo     Photo    @relation(fields: [photoId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  photoId   Int
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([photoId, userId])
 }
