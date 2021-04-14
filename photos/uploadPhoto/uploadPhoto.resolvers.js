@@ -1,5 +1,6 @@
 import client from "../../client.js";
 import { protectedResolver } from "../../users/users.utils";
+import { processHashtags } from "../photos.utils.js";
 
 // resolver를 protect해야 돼. 사진 업로드는 로그인한 상태에서만 가능한 작업이니까
 export default {
@@ -13,12 +14,7 @@ export default {
         // 근데 caption은 존재할수도 있고 존재하지 않을수도 있잖아 그래서 caption 존재 여부에 따라 추가해줘야 해
         // caption이 존재할때만 실행하고, caption이 없으면 아무것도 하지 않을거야
         if (caption) {
-          const hashtags = caption.match(/#[\w]+/g);
-          hashtagObj = hashtags.map((hashtag) => ({
-            where: { hashtag },
-            create: { hashtag },
-          }));
-          console.log(hashtagObj);
+          hashtagObj = processHashtags(caption);
           /// parse cation
           // get or create Hashtags
         }
