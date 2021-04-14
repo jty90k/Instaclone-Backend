@@ -13,6 +13,8 @@ export default {
           },
         },
       }),
+    // Like 개수를 나타내는 필드
+    likes: ({ id }) => client.like.count({ where: { photoId: id } }),
   },
   Hashtag: {
     photos: ({ id }, { page }, { loggedInUser }) => {

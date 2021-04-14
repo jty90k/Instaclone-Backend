@@ -39,7 +39,7 @@ model Photo {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   hashtagId Int?
-  Likes     Like[]
+  likes     Like[]
 }
 
 // caption (Hashtag)설명

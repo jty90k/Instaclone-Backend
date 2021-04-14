@@ -24,7 +24,7 @@ Instaclone Backend
 - [✅] See Hastag
 - [✅] Search Photos
 - [✅] Edit Photo
-- [] Like / Unlike Photo
+- [✅] Like / Unlike Photo
 - [] See Photo Likes
 <!-- 내가 팔로우 하는 유저들의 사진을 모아보는 것- pagination: cursor pagination과 offset pagination 마음대로 -->
 - [] See Feed
