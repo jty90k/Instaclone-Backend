@@ -35,7 +35,7 @@ model Photo {
   user      User      @relation(fields: [userId], references: [id]) //User 실제 DB에 저장이 되진 않는다.
   userId    Int // DB에 실제 저장이 된다. 
   file      String
-  caption   String? // 유저가 사진 캡션을 추가해도 되고 안 해도 되니까 선택 항목(option)
+  caption   String? // 유저가 사진 캡션을 추가해도 되고 안 해도 되니까 선택 항목(option) #caption 아래 설명 참조
   hashtags  Hashtag[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
