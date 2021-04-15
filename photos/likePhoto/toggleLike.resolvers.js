@@ -29,6 +29,7 @@ export default {
         await client.like.delete({
           where: {
             photoId_userId: {
+              userId: loggedInUser.id,
               photoId: id,
             },
           },
