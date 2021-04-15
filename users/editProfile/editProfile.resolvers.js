@@ -2,7 +2,7 @@ import { createWriteStream } from "fs";
 import bcrypt from "bcrypt";
 import client from "../../client.js";
 import { protectedResolver } from "../users.utils.js";
-import { uploadPhoto } from "../../shared/shared.utils.js";
+import { uploadToS3 } from "../../shared/shared.utils.js";
 
 console.log(process.cwd());
 
@@ -14,7 +14,7 @@ const resolverFn = async (
   // 사진파일 업로드 하는 로직
   let avatarUrl = null;
   if (avatar) {
-    avatarUrl = await uploadPhoto(avatar, loggedInUser.id);
+    avatarUrl = await uploadToS3(avatar, loggedInUser.id, "avatars");
     // const { filename, createReadStream } = await avatar;
     // const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
     // const readStream = createReadStream();

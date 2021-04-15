@@ -1,5 +1,6 @@
 import client from "../../client.js";
-import { protectedResolver } from "../../users/users.utils";
+import { uploadToS3 } from "../../shared/shared.utils.js";
+import { protectedResolver } from "../../users/users.utils.js";
 import { processHashtags } from "../photos.utils.js";
 
 // resolver를 protect해야 돼. 사진 업로드는 로그인한 상태에서만 가능한 작업이니까
@@ -15,14 +16,11 @@ export default {
         // caption이 존재할때만 실행하고, caption이 없으면 아무것도 하지 않을거야
         if (caption) {
           hashtagObj = processHashtags(caption);
-          /// parse cation
-          // get or create Hashtags
         }
-        // save the photo WITH the parsed hashtags
-        // add the photo to the hashtags
+        const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
         return client.photo.create({
           data: {
-            file,
+            file: fileUrl,
             caption,
             user: {
               connect: {
@@ -40,3 +38,8 @@ export default {
     ),
   },
 };
+
+/// parse cation
+// get or create Hashtags
+// save the photo WITH the parsed hashtags
+// add the photo to the hashtags
