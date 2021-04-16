@@ -56,7 +56,7 @@ Instaclone Backend
   <!-- 예를 들어 아직 25개의 읽지 않은 메세지가 있다고 알려주는 것 -->
 - [] Computed Fields
 <!-- 우리가 대화방 안에 들어갈 때 메세지를 화면상에 떠있으면 그 메세지는 읽혔졌다(seen)라고 표시된다. -->
-- [] See Message
+- [] See (Read) Message
 - [] Realtime Messages
 
 <!-- {

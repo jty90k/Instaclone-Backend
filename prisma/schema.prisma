@@ -98,6 +98,7 @@ model Message {
   userId    Int
   room      Room     @relation(fields: [roomId], references: [id]) //메세지는 대화방으로 보내는 거다  그러니까 Room도 만들어 준다.
   roomId    Int
+  read      Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
