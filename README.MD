@@ -48,8 +48,42 @@ Instaclone Backend
 
 ## DMs
 
-- [] Create Room
+- [✅] see Rooms
+<!-- 오직 내가 메세지를 보낼 때에만 대화방을 만들고 싶은 거야 -->
+- [✅] Send Message (Create Room)
 - [✅] see Room
-- [] Send Message (Create Room)
-- [] see Rooms
+  <!-- 메세지 상에 seen(읽음 표시) 기능 새롭게 구현 / 대화방을 눌렀으면 그 메세지를 읽음 표시가 된다. -->
+  <!-- 예를 들어 아직 25개의 읽지 않은 메세지가 있다고 알려주는 것 -->
+- [] Computed Fields
+<!-- 우리가 대화방 안에 들어갈 때 메세지를 화면상에 떠있으면 그 메세지는 읽혔졌다(seen)라고 표시된다. -->
+- [] See Message
 - [] Realtime Messages
+
+<!-- {
+  rooms {
+    users{
+        avatar
+        username
+    }
+    unreadNumber (읽지 않은 메세지 )
+  }
+  room(방 내부) {
+      users{
+          avatars
+          username
+      }
+      messages {
+          payload (데이터 정보들 예시 아래에 있음 )
+          seen True or False (바로 읽음 표시 기능)
+      }
+  }
+} -->
+<!-- user와 messages를 room의 field로 더해야 해 왜냐하면 사용자 간의 relationship을 디폴트로 로딩하는 게 아니거든  -->
+
+<!-- payload 뜻! {
+	"status" :
+	"from": "localhost",
+	"to": "http://melonicedlatte.com/chatroom/1",
+	"method": "GET",
+	"data":{ "message" : "There is a cutty dog!" }
+} -->
