@@ -1,20 +1,33 @@
 import { withFilter } from "graphql-subscriptions";
+import client from "../../client";
 import { NEW_MESSAGE } from "../../constans";
 import pubsub from "../../pubsub.js";
 
 export default {
   Subscription: {
     roomUpdates: {
-      //첫 번째 function은 async iterator(NEW_MESSAGE)
-      subscribe: withFilter(
-        () => pubsub.asyncIterator(NEW_MESSAGE),
-        //두 번째 function이 true를 return한다면, user는 업데이트를 받을 거야
-        //두 번째 function은 arguments은 payload과 variables이야
-        // id를 알아냄으로써 roomId를 알게 되었다.
-        ({ roomUpdates }, { id }) => {
-          return roomUpdates.roomId === id;
+      subscribe: async (root, args, context, info) => {
+        //room이 존재하는지 안 하는지 찾는 로직
+        //존재한다면, 유저는 업데이트를 리스닝할 수 있는 거야.
+        const room = await client.room.findUnique({
+          where: {
+            id: args.id,
+          },
+          select: {
+            id: true,
+          },
+        });
+        //room이 존재하지 않으면, 사람이 room을 리스닝하지 못하게 막는거야.
+        if (!room) {
+          throw new Error("You shall not see this");
         }
-      ),
+        return withFilter(
+          () => pubsub.asyncIterator(NEW_MESSAGE),
+          ({ roomUpdates }, { id }) => {
+            return roomUpdates.roomId === id;
+          }
+        )(root, args, context, info);
+      },
     },
   },
 };
