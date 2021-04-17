@@ -26,11 +26,10 @@ model User {
   followers User[]    @relation("FollowRelation", references: [id])
   following User[]    @relation("FollowRelation", references: [id])
   comments  Comment[]
+  rooms     Room[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Room      Room[]
-
-  Message Message[]
+  Message   Message[]
 }
 
 model Photo {
@@ -86,7 +85,7 @@ model Comment {
 model Room {
   id        Int       @id @default(autoincrement())
   users     User[]
-  messages  Message[] //이제 대화방에는 메세지들이랑 사용자들이 들어갈 수 있어 
+  messages  Message[] //이제 대화방에는 메세지들이랑 사용자들이 들어갈 수 있어
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }

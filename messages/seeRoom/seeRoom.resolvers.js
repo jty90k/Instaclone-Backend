@@ -7,8 +7,6 @@ import { protectedResolver } from "../../users/users.utils.js";
 // 그 대화방의 id가 있더라고 그 대화방에 이미 들어가 있어야지
 export default {
   Query: {
-    //findUnique는 하나만 존재하는 것들만 검색해 준다. (지금 같은 경우에는 room이 가진 것 중에 딱 하나만 있는 건 id 뿐)
-    //findFist: 하나만 있는게 아닌 것들도 찾을 수 있게 된다.
     seeRoom: protectedResolver((_, { id }, { loggedInUser }) =>
       client.room.findFirst({
         where: {

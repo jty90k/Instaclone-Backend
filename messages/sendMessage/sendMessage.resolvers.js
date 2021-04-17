@@ -1,6 +1,5 @@
-import client from "../../client.js";
-import { protectedResolver } from "../../users/users.utils.js";
-
+import client from "../../client";
+import { protectedResolver } from "../../users/users.utils";
 export default {
   Mutation: {
     sendMessage: protectedResolver(
@@ -29,15 +28,15 @@ export default {
                     id: userId,
                   },
                   {
-                    id: loggedInUser,
+                    id: loggedInUser.id,
                   },
                 ],
               },
             },
           });
-        } else if (roomId) {
           // roomId가 있을 땐 어떤 일이 일어날까? -만약 roomId가 있을 때는 1.대화방도 찾아야 하고 2.메세지도 만들어야 한다.
           // 사용자가 대화방의 id(roomId)를 보낼 경우  그 id의 대화방을 찾아야되는 거지
+        } else if (roomId) {
           room = await client.room.findUnique({
             where: {
               id: roomId,
@@ -59,9 +58,9 @@ export default {
             // payload: 메세지를 가지고 있다. ex: hey hello
             payload,
             room: {
+              //newMessage가 newRoom.id 대신에 room.id 에서 id를 갖고 오도록할거야
+              // 새롭게 생성한 대화방에서 생성하거나 혹은 우리가 찾아낸 대화방에서 생성하는거지
               connect: {
-                //newMessage가 newRoom.id 대신에 room.id 에서 id를 갖고 오도록할거야
-                // 새롭게 생성한 대화방에서 생성하거나 혹은 우리가 찾아낸 대화방에서 생성하는거지
                 id: room.id,
               },
             },

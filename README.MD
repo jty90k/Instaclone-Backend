@@ -54,9 +54,9 @@ Instaclone Backend
 - [✅] see Room
   <!-- 메세지 상에 seen(읽음 표시) 기능 새롭게 구현 / 대화방을 눌렀으면 그 메세지를 읽음 표시가 된다. -->
   <!-- 예를 들어 아직 25개의 읽지 않은 메세지가 있다고 알려주는 것 -->
-- [] Computed Fields
+- [✅] Computed Fields
 <!-- 우리가 대화방 안에 들어갈 때 메세지를 화면상에 떠있으면 그 메세지는 읽혔졌다(seen)라고 표시된다. -->
-- [] See (Read) Message
+- [✅] See (Read) Message
 - [] Realtime Messages
 
 <!-- {
