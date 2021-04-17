@@ -1,4 +1,5 @@
-import pubsub from "../../pubsub";
+import { NEW_MESSAGE } from "../../constans";
+import pubsub from "../../pubsub.js";
 
 export default {
   Subscription: {

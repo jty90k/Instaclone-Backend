@@ -1,5 +1,7 @@
-import client from "../../client";
-import { protectedResolver } from "../../users/users.utils";
+import client from "../../client.js";
+import { NEW_MESSAGE } from "../../constans.js";
+import pubsub from "../../pubsub.js";
+import { protectedResolver } from "../../users/users.utils.js";
 export default {
   Mutation: {
     sendMessage: protectedResolver(
@@ -20,7 +22,7 @@ export default {
               error: "This user does not exist.",
             };
           }
-          room = await client.room.create({
+          const message = await client.room.create({
             data: {
               users: {
                 connect: [
@@ -53,7 +55,7 @@ export default {
             };
           }
         }
-        await client.message.create({
+        const message = await client.message.create({
           data: {
             // payload: 메세지를 가지고 있다. ex: hey hello
             payload,
@@ -73,6 +75,7 @@ export default {
             },
           },
         });
+        pubsub.publish(NEW_MESSAGE, { roomUpdates: { ...message } });
         return {
           ok: true,
         };
