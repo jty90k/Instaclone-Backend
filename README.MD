@@ -57,7 +57,7 @@ Instaclone Backend
 - [✅] Computed Fields
 <!-- 우리가 대화방 안에 들어갈 때 메세지를 화면상에 떠있으면 그 메세지는 읽혔졌다(seen)라고 표시된다. -->
 - [✅] See (Read) Message
-- [] Realtime Messages
+- [✅] Realtime Messages
 
 <!-- {
   rooms {
