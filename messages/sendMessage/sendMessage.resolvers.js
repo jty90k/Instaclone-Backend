@@ -75,6 +75,7 @@ export default {
             },
           },
         });
+        // roomUpdate.resolvers.js -> roomUpdates가 작동될 때 아래 publish로직이 동작된다.
         pubsub.publish(NEW_MESSAGE, { roomUpdates: { ...message } });
         return {
           ok: true,

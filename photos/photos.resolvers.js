@@ -22,6 +22,29 @@ export default {
       }
       return userId === loggedInUser.id;
     },
+    // 좋아요 안에 있다.
+    isLiked: async ({ id }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false;
+      }
+      // 좋아요 찾기
+      const ok = await client.like.findUnique({
+        where: {
+          photoId_userId: {
+            photoId: id,
+            userId: loggedInUser.id,
+          },
+        },
+        // id만 select 존재하는지만 체크
+        select: {
+          id: true,
+        },
+      });
+      if (ok) {
+        return true;
+      }
+      return false;
+    },
   },
   Hashtag: {
     photos: ({ id }, { page }, { loggedInUser }) => {
