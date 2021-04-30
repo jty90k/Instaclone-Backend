@@ -15,7 +15,14 @@ export default {
       }),
     // Like 개수를 나타내는 필드 // 사진에 달린 comment(코멘트) //
     likes: ({ id }) => client.like.count({ where: { photoId: id } }),
-    comments: ({ id }) => client.comment.count({ where: { photoId: id } }),
+    commentNumber: ({ id }) => client.comment.count({ where: { photoId: id } }),
+    comments: ({ id }) =>
+      client.comment.findMany({
+        where: { photoId: id },
+        include: {
+          user: true,
+        },
+      }),
     isMine: ({ userId }, _, { loggedInUser }) => {
       if (!loggedInUser) {
         return false;

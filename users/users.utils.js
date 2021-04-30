@@ -16,6 +16,7 @@ export const getUser = async (token) => {
     return null;
   }
 };
+//protectedResolver 사용하는 경우엔 token이 유효하지 않거나 token이 없을 때, null을 반환한다는 점 기억하기
 export function protectedResolver(ourResolver) {
   return function (root, args, context, info) {
     if (!context.loggedInUser) {
