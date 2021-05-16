@@ -12,7 +12,7 @@ export default {
           },
         },
       }),
-    totalFollwers: ({ id }) =>
+    totalFollowers: ({ id }) =>
       client.user.count({
         where: {
           following: {
