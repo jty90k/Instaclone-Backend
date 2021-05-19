@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-core";
+import { gql } from "apollo-server";
 
 //Graphql은 우리가 필수 ! 로 지정하지 않는 한, 모든 항목은 성택항목이다.
 export default gql`
